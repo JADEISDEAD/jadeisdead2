@@ -114,49 +114,5 @@
       <button type="submit" id="submitButton">Send Message</button>
     </form>
   </div>
-
-  <script>
-    document.getElementById('messageForm').addEventListener('submit', function(event) {
-      event.preventDefault(); 
-
-      const message = document.getElementById('message').value;
-      const submitButton = document.getElementById('submitButton');
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-
-      const webhookURL = 'https://discord.com/api/webhooks/1337956613864161351/gWM38Eado2wF0j4kTMF-GJ_tNF1-oxXyK_TpfJrJDt9K64aCVj3RCCUSc5nbzcVdlVdj';
-
-      const data = {
-        content: message,
-        username: "Mfs in your shit gang" 
-      };
-
-      fetch(webhookURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
-        if (response.ok) {
-          alert('Message sent successfully!');
-          document.getElementById('message').value = ''; 
-        } else {
-          alert('Failed to send message. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-      })
-      .finally(() => {
-        // Re-enable the submit button
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
-      });
-    });
-  </script>
 </body>
 </html>
